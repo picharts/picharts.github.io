@@ -1,3 +1,4 @@
 ,Market_ID,Market_Name,Market_URL,Contract_ID,Contract_Name,bestBuyYesCost,bestBuyNoCost,BestSellYesCost,BestSellNoCost,Time_Stamp,Status
 0,5544,Which party will win Florida in the 2020 presidential election?,https://www.predictit.org/markets/detail/5544/Which-party-will-win-Florida-in-the-2020-presidential-election,15706,Republican,0.47,0.54,0.46,0.53,09/05/2020 23:53:18,Open
 1,5544,Which party will win Florida in the 2020 presidential election?,https://www.predictit.org/markets/detail/5544/Which-party-will-win-Florida-in-the-2020-presidential-election,15706,Republican,0.48,0.53,0.47,0.52,09/07/2020 11:20:42,Open
+2,5544,Which party will win Florida in the 2020 presidential election?,https://www.predictit.org/markets/detail/5544/Which-party-will-win-Florida-in-the-2020-presidential-election,15706,Republican,0.48,0.53,0.47,0.52,09/07/2020 13:59:01,Open
