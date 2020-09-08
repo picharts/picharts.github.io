@@ -7,6 +7,7 @@ import tweepy
 import math
 import time
 from datetime import datetime
+from pytictoc import TicToc
 
 import plotly.express as px
 
@@ -23,6 +24,7 @@ for n in range(120):
 
     now = datetime.now()
     current_time = now.strftime("%m/%d/%Y %H:%M:%S")
+    t = TicToc()  # create instance of class
 
     # Replace null values with zero
 
@@ -55,7 +57,7 @@ for n in range(120):
     #         k_count = k_count + 1
 
     #######################
-
+    t.tic()
     for q in id_list:
         presdata = pd.read_csv('./' + str(q) + '.csv')
         presdata = presdata.drop(presdata.columns[0], axis=1)
@@ -83,7 +85,7 @@ for n in range(120):
                     fig.update_xaxes(rangeslider_visible=True)
                     fig.write_html(r'' + str(q) + '.html')
 
-
+    t.toc()
     from git import Repo
 
     PATH_OF_GIT_REPO = r'C:\Users\lundj\AppData\Roaming\JetBrains\PyCharmCE2020.1\scratches\.git'  # make sure .git folder is properly configured
@@ -96,6 +98,8 @@ for n in range(120):
             origin = repo.remote(name='origin')
             origin.push()
     print('flag1')
+    t.tic()
     git_push()
     print('flag2')
+    t.toc()
     time.sleep(300)
