@@ -36,7 +36,7 @@ id_list = []
 for p in jsondata['markets']:
     for k in p['contracts']:
         id_list.append(k['id'])
-
+print(len(id_list))
 ########## INITIALIZE CSVs ###################
 k_count = 0
 for p in jsondata['markets']:

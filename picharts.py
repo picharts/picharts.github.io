@@ -40,7 +40,6 @@ for n in range(1200):
         for k in p['contracts']:
             id_list.append(k['id'])
 
-
     ########## INITIALIZE CSVs ###################
     # k_count = 0
     # for p in jsondata['markets']:
@@ -57,9 +56,12 @@ for n in range(1200):
     #######################
 
     for q in id_list:
-        presdata = pd.read_csv('./' + str(q) + '.csv')
-        presdata = presdata.drop(presdata.columns[0], axis=1)
-        presdata = presdata.values.tolist()
+        try:
+            presdata = pd.read_csv('./' + str(q) + '.csv')
+            presdata = presdata.drop(presdata.columns[0], axis=1)
+            presdata = presdata.values.tolist()
+        except:
+            presdata = []
         # Market data by contract/price in dataframe
         data = []
         # presdata = []
@@ -78,9 +80,16 @@ for n in range(1200):
 
                     fig = px.line(presdf, x='Time_Stamp',
                                   y=['bestBuyYesCost', 'bestBuyNoCost', 'BestSellYesCost', 'BestSellNoCost'],
-                                  title='market' + str(q))
+                                  title=k['name'] + ' in ' + p['name']+ ' ' + p['url'])
 
-                    fig.update_xaxes(rangeslider_visible=True)
+                    fig.update_xaxes(rangeslider_visible=True, rangeselector=dict(
+                        buttons=list([
+                        dict(count=1, label="1d", step="day", stepmode="backward"),
+                        dict(count=7, label="7d", step="day", stepmode="backward"),
+                        dict(count=1, label="1m", step="month", stepmode="backward"),
+                        dict(count=1, label="1y", step="year", stepmode="backward"),
+                        dict(step="all")
+                        ])))
                     fig.write_html(r'' + str(q) + '.html')
 
     t.toc()
