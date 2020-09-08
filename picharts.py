@@ -11,11 +11,6 @@ from pytictoc import TicToc
 
 import plotly.express as px
 
-
-def truncate(number, digits) -> float:
-    stepper = 10.0 ** digits
-    return math.trunc(stepper * number) / stepper
-
 for n in range(120):
     # Pull in market data from PredictIt's API
     URL = "https://www.predictit.org/api/marketdata/all/"
@@ -39,9 +34,11 @@ for n in range(120):
     jsondata = json.loads(dict_str, object_pairs_hook=dict_clean)
 
     id_list = []
+    t.tic()
     for p in jsondata['markets']:
         for k in p['contracts']:
             id_list.append(k['id'])
+    t.toc()
 
     ########## INITIALIZE CSVs ###################
     # k_count = 0
