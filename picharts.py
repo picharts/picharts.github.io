@@ -11,7 +11,7 @@ from pytictoc import TicToc
 
 import plotly.express as px
 
-for n in range(1200):
+for n in range(52):
     t = TicToc()  # create instance of class
     t.tic()
     # Pull in market data from PredictIt's API
@@ -57,7 +57,7 @@ for n in range(1200):
 
     for q in id_list:
         try:
-            presdata = pd.read_csv('./' + str(q) + '.csv')
+            presdata = pd.read_csv('/home/lundjack123/picharts.github.io/' + str(q) + '.csv')
             presdata = presdata.drop(presdata.columns[0], axis=1)
             presdata = presdata.values.tolist()
         except:
@@ -76,7 +76,7 @@ for n in range(1200):
                                       'bestBuyYesCost', 'bestBuyNoCost', 'BestSellYesCost', 'BestSellNoCost', 'Time_Stamp',
                                       'Status']
                     # Write dataframe to CSV file in working directory
-                    presdf.to_csv(r'./' + str(q) + '.csv', sep=',', encoding='utf-8', header='true')
+                    presdf.to_csv(r'/home/lundjack123/picharts.github.io/' + str(q) + '.csv', sep=',', encoding='utf-8', header='true')
 
                     fig = px.line(presdf, x='Time_Stamp',
                                   y=['bestBuyYesCost', 'bestBuyNoCost', 'BestSellYesCost', 'BestSellNoCost'],
@@ -90,9 +90,9 @@ for n in range(1200):
                         dict(count=1, label="1y", step="year", stepmode="backward"),
                         dict(step="all")
                         ])))
-                    fig.write_html(r'' + str(q) + '.html')
+                    fig.write_html(r'/home/lundjack123/picharts.github.io/' + str(q) + '.html')
 
     t.toc()
     from git import Repo
 
-    time.sleep(10)
+    #time.sleep(10)
