@@ -11,7 +11,7 @@ from pytictoc import TicToc
 
 import plotly.express as px
 
-for n in range(52):
+for n in range(1200):
     t = TicToc()  # create instance of class
     t.tic()
     # Pull in market data from PredictIt's API
@@ -39,6 +39,7 @@ for n in range(52):
     for p in jsondata['markets']:
         for k in p['contracts']:
             id_list.append(k['id'])
+    #print(len(id_list))
 
     ########## INITIALIZE CSVs ###################
     # k_count = 0
@@ -57,7 +58,7 @@ for n in range(52):
 
     for q in id_list:
         try:
-            presdata = pd.read_csv('/home/lundjack123/picharts.github.io/' + str(q) + '.csv')
+            presdata = pd.read_csv('./' + str(q) + '.csv')
             presdata = presdata.drop(presdata.columns[0], axis=1)
             presdata = presdata.values.tolist()
         except:
@@ -76,7 +77,7 @@ for n in range(52):
                                       'bestBuyYesCost', 'bestBuyNoCost', 'BestSellYesCost', 'BestSellNoCost', 'Time_Stamp',
                                       'Status']
                     # Write dataframe to CSV file in working directory
-                    presdf.to_csv(r'/home/lundjack123/picharts.github.io/' + str(q) + '.csv', sep=',', encoding='utf-8', header='true')
+                    presdf.to_csv(r'./' + str(q) + '.csv', sep=',', encoding='utf-8', header='true')
 
                     fig = px.line(presdf, x='Time_Stamp',
                                   y=['bestBuyYesCost', 'bestBuyNoCost', 'BestSellYesCost', 'BestSellNoCost'],
@@ -90,9 +91,10 @@ for n in range(52):
                         dict(count=1, label="1y", step="year", stepmode="backward"),
                         dict(step="all")
                         ])))
-                    fig.write_html(r'/home/lundjack123/picharts.github.io/' + str(q) + '.html')
+                    fig.write_html(r'' + str(q) + '.html', include_plotlyjs = 'cdn')
 
     t.toc()
     from git import Repo
 
-    #time.sleep(10)
+    time.sleep(10)
+
