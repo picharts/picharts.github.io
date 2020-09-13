@@ -11,7 +11,7 @@ from pytictoc import TicToc
 
 import plotly.express as px
 
-for n in range(1200):
+while(1==1):
     t = TicToc()  # create instance of class
     t.tic()
     # Pull in market data from PredictIt's API
